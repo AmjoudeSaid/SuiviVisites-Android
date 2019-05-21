@@ -1,6 +1,7 @@
 package fr.gsb.suivivisitesgsb;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -51,6 +52,43 @@ public class AfficheVisite extends AppCompatActivity {
                 sTelephone.substring(8, 10));
         textView.setText(sTelephone);
 
+        // Remplissage des données si un avis est déjà enregistré
+        if (visite.getPresent()){
+            Switch sw = ((Switch) findViewById(R.id.presenceProspect));
+            sw.setChecked(true);
+
+            Calendar c = Calendar.getInstance();
+            c.setTime(visite.getDate());
+            int annee = c.get(Calendar.YEAR);
+            int mois = c.get(Calendar.MONTH);
+            int jour = c.get(Calendar.DAY_OF_MONTH);
+            DatePicker datePicker = (DatePicker) findViewById(R.id.dateVisite);
+            datePicker.updateDate(annee, mois, jour);
+
+            EditText editTextMotif = (EditText) findViewById(R.id.motifVisite);
+            editTextMotif.setText(visite.getMotif());
+
+            RatingBar ratingBar = ((RatingBar) findViewById(R.id.confianceGSB));
+            ratingBar.setRating(visite.getNiveauconfiance());
+
+            RadioGroup rgLisi = (RadioGroup) findViewById(R.id.rgLisibilite);
+            switch (visite.getLisibilite())
+            {
+                case "Parfaitement lisible":
+                    rgLisi.check(R.id.rbLisibleOk);
+                    break;
+                case "Il faut mettre des lunettes":
+                    rgLisi.check(R.id.rbLisibleMoyen);
+                    break;
+                case "Incompréhensible !":
+                    rgLisi.check(R.id.rbLisibleKo);
+                    break;
+            }
+
+            EditText editTextBilan = (EditText) findViewById(R.id.bilan);
+            editTextBilan.setText(visite.getBilan());
+        }
+
         // Gestion des évènements des boutons
         Button boutonValider = (Button) findViewById(R.id.validerAvis);
         boutonValider.setOnClickListener(new View.OnClickListener() {
@@ -68,6 +106,7 @@ public class AfficheVisite extends AppCompatActivity {
                 finish();
             }
         });
+
     }
 
     // Méthode qui sauvegarde les modifications saisies
@@ -113,4 +152,5 @@ public class AfficheVisite extends AppCompatActivity {
         Log.i("avisvisite", visite.toString());
         Modele.getModele().saveVisite(visite);
     }
+
 }

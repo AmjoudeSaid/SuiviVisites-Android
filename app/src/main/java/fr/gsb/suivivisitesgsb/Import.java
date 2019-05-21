@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -50,7 +51,7 @@ public class Import extends AppCompatActivity {
             @Override
             public void onClick(View arg0) {
                 // Création d'un tableau de paramètres à passer à l'AsyncTask
-                String[] mesParams = {identifiant, mdp, "http://gsb.dynu.net:8081/suivivisitesgsb/import.php"};
+                String[] mesParams = {identifiant, mdp, "http://gsb.dynu.net:8081/suivivisitesgsb/import1.php"};
                 Toast.makeText(getApplicationContext(), "clic bouton", Toast.LENGTH_SHORT).show();
                 // Lance l'AsyncTask
                 connexionAsynchrone = new Connexion(Import.this).execute(mesParams);
@@ -73,6 +74,8 @@ public class Import extends AppCompatActivity {
             Visites uneVisite = gson.fromJson(obj.getAsJsonObject(), Visites.class);
             listeVisites.add(uneVisite);
         }
+        Log.i("json", "listevisites" + listeVisites);
+
 
         // Si la liste contient visites alors on la sauvegarde dans la base DB4o
         if (!listeVisites.isEmpty()) {

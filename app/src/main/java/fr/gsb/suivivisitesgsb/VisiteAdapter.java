@@ -15,7 +15,7 @@ public class VisiteAdapter extends BaseAdapter {
     private List<Visites> listeVisites;
     private LayoutInflater layoutInflater;
 
-    public VisiteAdapter( Context c, List<Visites> lstVisite) {
+    public VisiteAdapter(Context c, List<Visites> lstVisite) {
         layoutInflater = LayoutInflater.from(c);
         listeVisites = lstVisite;
     }
@@ -43,7 +43,7 @@ public class VisiteAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView( int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
         if (convertView == null) {
             holder = new ViewHolder();
@@ -61,13 +61,13 @@ public class VisiteAdapter extends BaseAdapter {
         holder.textViewNom.setText(listeVisites.get(position).getNom());
         holder.textViewPrenom.setText(listeVisites.get(position).getPrenom());
         holder.textViewAdresse.setText(listeVisites.get(position).getAdresse());
-        /*String s = listeVisites.get(position).getTel();
+        String s = listeVisites.get(position).getTel();
         s = String.format("%s.%s.%s.%s.%s", s.substring(0, 2),
                 s.substring(2, 4), s.substring(4, 6), s.substring(6, 8),
-                s.substring(8, 10));*/
-        holder.textViewTelephone.setText(listeVisites.get(position).getTel());
+                s.substring(8, 10));
+        holder.textViewTelephone.setText(s);
 
-        // Colorie en bleu les lignes dont la visite a pu être effectuée
+        // Colorie les lignes paires et impaires
         if (position % 2 == 0) {
             convertView.setBackgroundColor(Color.rgb(238, 233, 233));
         } else {
@@ -77,6 +77,7 @@ public class VisiteAdapter extends BaseAdapter {
         // Colorie en bleu les lignes dont la visite a pu être effectuée
         if (listeVisites.get(position).getPresent())
             convertView.setBackgroundColor(Color.rgb(117, 154, 201));
+
 
         return convertView;
     }

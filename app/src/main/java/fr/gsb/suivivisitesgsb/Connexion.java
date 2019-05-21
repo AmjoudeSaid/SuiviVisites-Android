@@ -148,6 +148,7 @@ public class Connexion extends AsyncTask<String, String, Boolean> {
     // Méthode exécutée à la fin de la méthode doInBackGroud()
     @Override
     protected void onPostExecute(Boolean result) {
+        Toast.makeText(activiteAppelante.get(), "Fin AsynckTask", Toast.LENGTH_SHORT).show();
         if (activiteAppelante.get() != null) {
             if (result) {
                 Toast.makeText(activiteAppelante.get(), "Fin AsynckTask", Toast.LENGTH_SHORT).show();

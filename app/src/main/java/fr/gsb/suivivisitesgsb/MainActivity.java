@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -19,7 +20,6 @@ public class MainActivity extends AppCompatActivity {
     private SharedPreferences jetonAuth;
     private String identifiant, mdp;
     private static final int REQUEST_WRITE_STORAGE = 100;
-    private static Modele m;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,11 +42,9 @@ public class MainActivity extends AppCompatActivity {
         imageViewExport = (ImageView) findViewById(R.id.imgExport);
 
         // Désactiver les boutons Import, Visites et Export
-        //imageViewVisites.setEnabled(true);
-        //imageViewImport.setEnabled(true);
-        //imageViewExport.setEnabled(true);
-        //imageViewAuthentification.setEnabled(true);
-
+        imageViewVisites.setEnabled(false);
+        imageViewImport.setEnabled(false);
+        imageViewExport.setEnabled(false);
 
         // Gestion des clics sur les images du menu
         imageViewAuthentification.setOnClickListener(imageClick);
@@ -54,9 +52,8 @@ public class MainActivity extends AppCompatActivity {
         imageViewImport.setOnClickListener(imageClick);
         imageViewExport.setOnClickListener(imageClick);
 
-        m = Modele.getModele();
-
     }
+
 
     // Vérification des permissions accordées par l'utilisateur
     @Override
@@ -77,37 +74,43 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
     // Création de l'écouteur imageClick et du traitement associé
-    private View.OnClickListener imageClick = new View.OnClickListener(){
-        public void onClick(View v){
+    private View.OnClickListener imageClick = new View.OnClickListener() {
+        public void onClick(View v) {
             Intent i;
 
-            switch (v.getId()){
-                // Cas du clic sur l'image Visite
-                case R.id.imgVisites:
-                    i = new Intent(getApplicationContext(), AfficherListeVisites.class);
-                    startActivity(i);
-                    break;
+            switch (v.getId()) {
+
                 // Cas du clic sur l'image Authentification
                 case R.id.imgAuth:
                     i = new Intent(getApplicationContext(), Authentification.class);
                     startActivity(i);
                     break;
-                // Cas du clic sur l'image Exporter
-                case R.id.imgExport:
-                    i = new Intent(getApplicationContext(), Export.class);
+
+                // Cas du clic sur l'image Visite
+                case R.id.imgVisites:
+                    i = new Intent(getApplicationContext(), AfficherListeVisites.class);
                     startActivity(i);
                     break;
-                // Cas du clic sur l'image Importer
+
+                // Cas du clic sur l'image Import
                 case R.id.imgImport:
                     i = new Intent(getApplicationContext(), Import.class);
+                    startActivity(i);
+                    break;
+
+                // Cas du clic sur l'image Export
+                case R.id.imgExport:
+                    i = new Intent(getApplicationContext(), Export.class);
                     startActivity(i);
                     break;
             }
         }
     };
 
-    /*@Override
+
+    @Override
     protected void onResume(){
         super.onResume();
         identifiant = jetonAuth.getString("login", null);
@@ -120,9 +123,9 @@ public class MainActivity extends AppCompatActivity {
             imageViewImport.setEnabled(true);
             imageViewExport.setEnabled(true);
         }else{
-            //imageViewVisites.setEnabled(false);
-            //imageViewImport.setEnabled(false);
-            //imageViewExport.setEnabled(false);
+            imageViewVisites.setEnabled(false);
+            imageViewImport.setEnabled(false);
+            imageViewExport.setEnabled(false);
         }
-    }*/
+    }
 }
