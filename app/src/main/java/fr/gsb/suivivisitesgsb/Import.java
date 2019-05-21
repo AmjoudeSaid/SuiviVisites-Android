@@ -83,6 +83,7 @@ public class Import extends AppCompatActivity {
             setResult(Activity.RESULT_OK);
             finish();
         } else {
+            Toast.makeText(this, "Importation de données echouée", Toast.LENGTH_SHORT).show();
             setResult(Activity.RESULT_CANCELED);
             finish();
         }

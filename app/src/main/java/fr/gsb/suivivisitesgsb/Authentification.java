@@ -15,7 +15,7 @@ public class Authentification extends AppCompatActivity {
 
     private Button btnSeConnecter, btnAnnuler;
     private EditText editTextLogin, editTextMDP;
-    private String identifiant, mdp, mdpsha1;
+    private String identifiant, mdp;
     private AsyncTask<String, String, Boolean> connexionAsynchrone;
     private SharedPreferences jetonAuth;
 
@@ -71,7 +71,7 @@ public class Authentification extends AppCompatActivity {
 
             // On stocke dans les Shared Preference le login et le mot de passe si l'utilisateur a été authentifié
             edit.putString("login", identifiant);
-            edit.putString("mdp", mdpsha1);
+            edit.putString("mdp", mdp);
             edit.commit();
             Modele.getModele().deleteVisites();
 

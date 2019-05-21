@@ -53,7 +53,9 @@ public class Connexion extends AsyncTask<String, String, Boolean> {
         }
 
         // Paramètres utiles à l'activité Exportation
-
+        if (nomClasseActiviteAppelante.contains("Export")) {
+            listeVisites = params[3];
+        }
 
         // Connexion au serveur en POST et envoi des données d'authentification au format JSON
         HttpURLConnection urlConnexion = null;
@@ -76,14 +78,20 @@ public class Connexion extends AsyncTask<String, String, Boolean> {
                 JSONObject jsonParam = new JSONObject();
                 jsonParam.put("login", identifiant);
                 jsonParam.put("mdp", mdp);
-                Log.i("versServeur", "Envoyé au serveur : " + jsonParam.toString());
+                Log.i("versServeur", "Envoyé au serveur : " + jsonParam);
                 out.write(jsonParam.toString());
                 out.flush();
             }
 
             // Création objet JSON clé->valeur pour l'activité Export
             if (nomClasseActiviteAppelante.contains("Export")) {
-                // A compléter
+                JSONObject jsonParam = new JSONObject();
+                jsonParam.put("login", identifiant);
+                jsonParam.put("mdp", mdp);
+                jsonParam.put("listeVisites", listeVisites);
+                Log.i("versServeur", "Envoyé au serveur : " + jsonParam.toString());
+                out.write(jsonParam.toString());
+                out.flush();
             }
 
             out.close();
@@ -91,6 +99,7 @@ public class Connexion extends AsyncTask<String, String, Boolean> {
             // Traitement du script PHP correspondant sur le serveur
 
             // Récupération du résultat de la requête au format JSON depuis le serveur
+            Log.i("marche", "allo");
             int HttpResult = urlConnexion.getResponseCode();
             if (HttpResult == HttpURLConnection.HTTP_OK) {
                 BufferedReader br = new BufferedReader(new InputStreamReader(urlConnexion.getInputStream(), "utf-8"));
