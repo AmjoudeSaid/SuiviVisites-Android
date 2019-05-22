@@ -1,6 +1,7 @@
 package fr.gsb.suivivisitesgsb;
 
 import android.os.Environment;
+import android.util.Log;
 
 import com.db4o.Db4oEmbedded;
 import com.db4o.ObjectContainer;
@@ -75,6 +76,7 @@ public class Modele {
             visites.add(result.next());
 
         close();
+        Log.i("Visitesallo", "" + visites);
         return visites;
     }
 

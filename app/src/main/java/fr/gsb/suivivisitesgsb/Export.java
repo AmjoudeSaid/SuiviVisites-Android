@@ -56,7 +56,6 @@ public class Export extends AppCompatActivity {
 
         // Sérialisation de la liste des Visites au format JSON (en chaine de caractères)
         chaineJSONVisites = gson.toJson(listeVisitesFaites);
-        Log.i("versServeur", "Envoyé au serveur : " + chaineJSONVisites.toString());
 
         // Gestion de l'évènement sur le clic du bouton Retour
         btnRetourExport.setOnClickListener(new View.OnClickListener() {

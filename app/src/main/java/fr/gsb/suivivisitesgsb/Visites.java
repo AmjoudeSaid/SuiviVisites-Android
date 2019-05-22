@@ -8,12 +8,47 @@ public class Visites {
     private String id, nom, prenom, adresse, tel;
 
     // Données à saisir lors de la visite
-    private Boolean present;
+    private boolean present;
     private Date date;
     private String motif;
     private float niveauconfiance;
     private String lisibilite;
     private String bilan;
+
+    //Constructeur vide
+    public Visites() {
+    }
+
+    //Constructeur
+    public Visites(String id, String nom, String prenom, String adresse, String tel) {
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.adresse = adresse;
+        this.tel = tel;
+
+        this.present = false;
+        this.date = new Date();
+        this.motif = "";
+        this.niveauconfiance = 0;
+        this.lisibilite = "";
+        this.bilan = "";
+    }
+
+    //Méthode copieVisite
+    public void copieVisite(Visites v){
+        this.id = v.id;
+        this.nom = v.nom;
+        this.prenom = v.prenom;
+        this.adresse = v.adresse;
+        this.tel = v.tel;
+        this.present = v.present;
+        this.date = v.date;
+        this.motif = v.motif;
+        this.niveauconfiance = v.niveauconfiance;
+        this.lisibilite = v.lisibilite;
+        this.bilan = v.bilan;
+    }
 
     //Gets
     public String getId() {
@@ -105,39 +140,21 @@ public class Visites {
         this.bilan = bilan;
     }
 
-    //Constructeur vide
-    public Visites() {
-    }
-
-    //Constructeur
-    public Visites(String id, String nom, String prenom, String adresse, String tel) {
-        this.id = id;
-        this.nom = nom;
-        this.prenom = prenom;
-        this.adresse = adresse;
-        this.tel = tel;
-
-        this.present = false;
-        this.date = new Date();
-        this.motif = "";
-        this.niveauconfiance = 0;
-        this.lisibilite = "";
-        this.bilan = "";
-    }
-
-    //Méthode copieVisite
-    public void copieVisite(Visites v){
-        this.id = v.id;
-        this.nom = v.nom;
-        this.prenom = v.prenom;
-        this.adresse = v.adresse;
-        this.tel = v.tel;
-        this.present = v.present;
-        this.date = v.date;
-        this.motif = v.motif;
-        this.niveauconfiance = v.niveauconfiance;
-        this.lisibilite = v.lisibilite;
-        this.bilan = v.bilan;
+    @Override
+    public String toString() {
+        return "Visite{" +
+                "id='" + id + '\'' +
+                ", nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
+                ", adresse='" + adresse + '\'' +
+                ", telephone='" + tel + '\'' +
+                ", present=" + present +
+                ", dateVisite=" + date +
+                ", motif=" + motif +
+                ", niveauConfiance=" + niveauconfiance +
+                ", lisibilite='" + lisibilite + '\'' +
+                ", bilan='" + bilan + '\'' +
+                '}';
     }
 }
 

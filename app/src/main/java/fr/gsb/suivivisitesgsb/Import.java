@@ -71,6 +71,7 @@ public class Import extends AppCompatActivity {
         Gson gson = new GsonBuilder().setDateFormat("yyyy-mm-dd").create();
         for (JsonElement obj : tabJSON) {
             // Désérialisation (chaine JSON -> Objet Visite)
+            Log.i("Objetgson", "" + gson.fromJson(obj.getAsJsonObject(), Visites.class));
             Visites uneVisite = gson.fromJson(obj.getAsJsonObject(), Visites.class);
             listeVisites.add(uneVisite);
         }

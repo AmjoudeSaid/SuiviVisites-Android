@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,7 +14,7 @@ import android.widget.Toast;
 
 public class Authentification extends AppCompatActivity {
 
-    private Button btnSeConnecter, btnAnnuler;
+    private Button btnSeConnecter, btnAnnuler,btnDeconnecter;
     private EditText editTextLogin, editTextMDP;
     private String identifiant, mdp;
     private AsyncTask<String, String, Boolean> connexionAsynchrone;
@@ -31,11 +32,23 @@ public class Authentification extends AppCompatActivity {
         // Récupère les boutons depuis le layout
         btnSeConnecter = (Button) findViewById(R.id.buttonAuthentification);
         btnAnnuler=(Button) findViewById(R.id.buttonAnnuler);
+        btnDeconnecter=(Button) findViewById(R.id.buttonDeconnexion);
 
         // Gestion de l'évènement sur le clic du bouton Annuler
         btnAnnuler.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
+                setResult(Activity.RESULT_CANCELED);
+                finish();
+            }
+        });
+
+        // Gestion de l'évènement sur le clic du bouton de Déconnexion
+        btnDeconnecter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                getSharedPreferences("AppData", Context.MODE_PRIVATE).edit().clear().commit();
+                Modele.getModele().deleteVisites();
                 setResult(Activity.RESULT_CANCELED);
                 finish();
             }

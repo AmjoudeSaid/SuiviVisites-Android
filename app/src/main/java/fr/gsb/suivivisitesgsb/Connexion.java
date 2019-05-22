@@ -59,16 +59,23 @@ public class Connexion extends AsyncTask<String, String, Boolean> {
 
         // Connexion au serveur en POST et envoi des données d'authentification au format JSON
         HttpURLConnection urlConnexion = null;
+        Log.i("test", "oui");
         try {
+            Log.i("test2", "oui");
             URL url = new URL(urlServiceGSB);
+            Log.i("test2", "oui");
             urlConnexion = (HttpURLConnection) url.openConnection();
+            Log.i("test3", "oui");
             urlConnexion.setRequestProperty("Content-Type", "application/json");
+            Log.i("test4", "oui");
             urlConnexion.setRequestProperty("Accept", "application/json");
+            Log.i("test5", "oui");
             urlConnexion.setRequestMethod("POST");
+            Log.i("test6", "oui");
             urlConnexion.setDoOutput(true);
+            Log.i("test7", "oui");
             urlConnexion.setConnectTimeout(5000);
-
-            //Toast.makeText(activiteAppelante.get(), "AsyncTask connexion ok", Toast.LENGTH_SHORT).show();
+            Log.i("test8", "oui");
             OutputStreamWriter out = new OutputStreamWriter(urlConnexion.getOutputStream());
 
             // Selon l'activité appelante on peut passer des paramètres en JSON
@@ -89,7 +96,7 @@ public class Connexion extends AsyncTask<String, String, Boolean> {
                 jsonParam.put("login", identifiant);
                 jsonParam.put("mdp", mdp);
                 jsonParam.put("listeVisites", listeVisites);
-                Log.i("versServeur", "Envoyé au serveur : " + jsonParam.toString());
+                Log.i("versServeurExport1", "Envoyé au serveur : " + jsonParam.toString());
                 out.write(jsonParam.toString());
                 out.flush();
             }
@@ -99,7 +106,6 @@ public class Connexion extends AsyncTask<String, String, Boolean> {
             // Traitement du script PHP correspondant sur le serveur
 
             // Récupération du résultat de la requête au format JSON depuis le serveur
-            Log.i("marche", "allo");
             int HttpResult = urlConnexion.getResponseCode();
             if (HttpResult == HttpURLConnection.HTTP_OK) {
                 BufferedReader br = new BufferedReader(new InputStreamReader(urlConnexion.getInputStream(), "utf-8"));

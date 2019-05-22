@@ -39,10 +39,7 @@ public class AfficherListeVisites extends AppCompatActivity {
                 Intent myIntent = new Intent(getApplicationContext(), AfficheVisite.class);
                 myIntent.putExtra("paramIdVisite", listeVisites.get(position).getId());
                 startActivity(myIntent);
-
-
             }
         });
     }
-
 }

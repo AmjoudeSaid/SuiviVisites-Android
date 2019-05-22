@@ -31,9 +31,9 @@
                 android:textSize="20dp" />
 
             <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/login" />
+                android:id="@+id/login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
         <LinearLayout
@@ -49,11 +49,11 @@
                 android:textSize="20dp" />
 
             <EditText
-                android:layout_width="wrap_content"
+                android:id="@+id/mdp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword"
                 android:ems="10"
-                android:id="@+id/mdp" />
+                android:inputType="textPassword" />
         </LinearLayout>
 
         <LinearLayout
@@ -75,6 +75,19 @@
                 android:id="@+id/buttonAnnuler"
                 android:layout_weight="1" />
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/buttonDeconnexion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Se déconnecter" />
         </LinearLayout>
 
     </LinearLayout>
