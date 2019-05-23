@@ -54,28 +54,32 @@ public class Connexion extends AsyncTask<String, String, Boolean> {
 
         // Paramètres utiles à l'activité Exportation
         if (nomClasseActiviteAppelante.contains("Export")) {
+            identifiant = params[0];
+            mdp = params[1];
+            urlServiceGSB = params[2];
             listeVisites = params[3];
+            Log.i("ListeVisites", "" + listeVisites);
         }
 
         // Connexion au serveur en POST et envoi des données d'authentification au format JSON
         HttpURLConnection urlConnexion = null;
-        Log.i("test", "oui");
+        Log.i("yaoo", "oui");
         try {
-            Log.i("test2", "oui");
+            Log.i("yaoo2", "oui");
             URL url = new URL(urlServiceGSB);
-            Log.i("test2", "oui");
+            Log.i("yaoo3", "oui");
             urlConnexion = (HttpURLConnection) url.openConnection();
-            Log.i("test3", "oui");
+            Log.i("yaoo4", "oui");
             urlConnexion.setRequestProperty("Content-Type", "application/json");
-            Log.i("test4", "oui");
+            Log.i("yaoo5", "oui");
             urlConnexion.setRequestProperty("Accept", "application/json");
-            Log.i("test5", "oui");
+            Log.i("yaoo6", "oui");
             urlConnexion.setRequestMethod("POST");
-            Log.i("test6", "oui");
+            Log.i("yaoo7", "oui");
             urlConnexion.setDoOutput(true);
-            Log.i("test7", "oui");
+            Log.i("yaoo8", "oui");
             urlConnexion.setConnectTimeout(5000);
-            Log.i("test8", "oui");
+            Log.i("yaoo9", "oui");
             OutputStreamWriter out = new OutputStreamWriter(urlConnexion.getOutputStream());
 
             // Selon l'activité appelante on peut passer des paramètres en JSON

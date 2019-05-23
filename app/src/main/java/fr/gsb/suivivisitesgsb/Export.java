@@ -53,6 +53,7 @@ public class Export extends AppCompatActivity {
             if(v.getPresent())
                 listeVisitesFaites.add(v);
         }
+        Log.i("bonjour", "" + listeVisitesFaites);
 
         // Sérialisation de la liste des Visites au format JSON (en chaine de caractères)
         chaineJSONVisites = gson.toJson(listeVisitesFaites);
